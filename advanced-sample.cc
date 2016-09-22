@@ -66,6 +66,7 @@ int main (int argc, char *argv[])
   //   3rd arg: a pointer to store the parse result
   //   4th arg: default value
   //   5th arg: description for `help'
+  //            `d_indent' is description default indent.
   cmd.add_string ('s', "string", &str, "foo",
                   cmd.d_indent + "Specify string option.");
 
@@ -83,6 +84,7 @@ int main (int argc, char *argv[])
   //   2nd arg: long option name
   //   3rd arg: pointer to store the parse result
   //   4th arg: description for `help'
+  //            `d_indent' is description default indent.
   cmd.add_flag ('f', "flag", &flag,
                 cmd.d_indent + "This is a flag.\n" +
                 cmd.d_indent + "Second line.\n" +
@@ -101,6 +103,7 @@ int main (int argc, char *argv[])
   //   3rd arg: {no|required|optional}_argument like getopt_long ()
   //   4th arg: option handler (lambda expression)
   //   5th arg: description for `help'
+  //            `d_indent' is description default indent.
   //   6th arg: typestr for `help'
   cmd.add_handler ('H', "handler",
                    cmdlineparse::arg_mode::optional_argument,
@@ -117,6 +120,7 @@ int main (int argc, char *argv[])
   //   4th arg: option handler (function)
   //   6th arg: typestr for `help'
   //   7th arg: header for `help'
+  //            `h_space' is header default separator spaces.
   //   8th arg: option group name for `help'
   cmd.add_handler ('F', "callback-func",
                    cmdlineparse::arg_mode::required_argument,
@@ -131,6 +135,7 @@ int main (int argc, char *argv[])
   //   2nd arg: this option doesn't have a long name
   //   3rd arg: this option doesn't require argument
   //   4th arg: description for `help'
+  //            `h_indent' is header default indent.
   cmd.add_description (0, "", cmdlineparse::arg_mode::no_argument,
                        "Description only\n" +
                        cmd.h_indent + "description only");

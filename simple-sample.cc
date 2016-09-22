@@ -51,6 +51,7 @@ int main (int argc, char *argv[])
   //   3rd arg: a pointer to store the parse result
   //   4th arg: default value
   //   5th arg: description for `help'
+  //            `d_indent' is description default indent.
   cmd.add_string ('s', "string", &str, "foobar",
                   cmd.d_indent + "Specify string option.");
 
@@ -59,6 +60,7 @@ int main (int argc, char *argv[])
   //   2nd arg: long option name
   //   3rd arg: pointer to store the parse result
   //   4th arg: description for `help'
+  //            `d_indent' is description default indent.
   cmd.add_flag ('f', "flag", &flag,
                 cmd.d_indent + "This is a flag.\n" +
                 cmd.d_indent + "Second line.\n" +
