@@ -505,7 +505,7 @@ void set_opterr (bool flag) noexcept;
 ```
 
 + `true` (default):
-  The parser outputs an error message to standard output
+  The parser outputs an error message to standard error
   when the error happens.
 + `false`:
   The parser doesn't output any error messages.
