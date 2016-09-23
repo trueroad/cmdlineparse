@@ -248,8 +248,8 @@ Add an option handler.
     If it returns false, the parsing is aborted.
   + `description`: Description body of the option.
     It is added to a help message.
-	It doesn't warp text automatically
-	because wrapping is difficult for multibyte encodings like UTF-8 etc.
+    It doesn't warp text automatically
+    because wrapping is difficult for multibyte encodings like UTF-8 etc.
   + `typestr`: Argument type string.
     It is added to a help message.
   + `header`: Description header of the option.
@@ -273,10 +273,10 @@ bool add_flag (char short_name,
 
 Add a flag option.
 
-* Parameter
+* Parameter:
   + `flag`: A pointer of flag. One of the following will be set.
     + `true`: The parser found the option.
-	+ `false`: The parser didn't found the option.
+    + `false`: The parser didn't found the option.
   + Other parameters are same as `add_handler ()`.
 * Return value:
   + Return value is same as `add_handler ()`.
@@ -287,7 +287,7 @@ Add a flag option.
 bool add_string (char short_name,
                  const std::string &long_name,
                  std::string *var,
-				 const std::string &defval,
+                 const std::string &defval,
                  const std::string &description = "",
                  const std::string &typestr = "STRING",
                  const std::string &group = "");
@@ -295,7 +295,7 @@ bool add_string (char short_name,
 
 Add a string option.
 
-* Parameter
+* Parameter:
   + `var`: A pointer of string.
     When the parser found the option, its argument is set to `var`.
   + `defval`: Default value.
@@ -321,7 +321,7 @@ This function adds only the description.
 It is added to a help message.
 The parser behavior is not changed.
 
-* Parameter
+* Parameter:
   + All parameters are same as `add_handler ()`.
 
 #### Add default handler
@@ -372,7 +372,7 @@ bool parse (int argc, char const* const* argv, int optind = 1);
 
 Parse options.
 
-* Parameter
+* Parameter:
   + `argc` and `argv`: Arguments from `main ()`.
   + `optind`: The index of the first argument for parsing.
 * Return value:
