@@ -546,3 +546,7 @@ Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
 License: BSD-2-Clause
 
 See [LICENSE](./LICENSE).
+
+If you prefer GPL,
+[Extract PDFmark](https://github.com/trueroad/extractpdfmark) contains
+GPL version of *Commandline Parse*.
