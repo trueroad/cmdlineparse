@@ -542,6 +542,7 @@ void set_abbreviated_long_name (bool flag) noexcept;
 ## License
 
 Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
+
 License: BSD-2-Clause
 
 See [LICENSE](./LICENSE).
