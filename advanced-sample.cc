@@ -54,10 +54,10 @@ int main (int argc, char *argv[])
   // Use default version string (Autotools macros or argv[0]).
 
   // Set usage_unamed_opts (options without names e.g. file names)
-  // for usage in `help'
+  // for usage in `--help'
   cmd.set_usage_unamed_opts ("FILES");
 
-  // Add `help' and `version' options
+  // Add `--help' and `--version' options
   cmd.add_default ();
 
   // Add a string option
@@ -65,15 +65,15 @@ int main (int argc, char *argv[])
   //   2nd arg: long option name
   //   3rd arg: a pointer to store the parse result
   //   4th arg: default value
-  //   5th arg: description for `help'
+  //   5th arg: description for `--help'
   //            `d_indent' is description default indent.
   cmd.add_string ('s', "string", &str, "foo",
                   cmd.d_indent + "Specify string option.");
 
   // Add another string option
   //   2nd arg: this option doesn't have a long name
-  //   6th arg: typestr for `help'
-  //   7th arg: option group name for `help'
+  //   6th arg: typestr for `--help'
+  //   7th arg: option group name for `--help'
   cmd.add_string ('t', "", &str2, "bar",
                   cmd.d_indent + "Specify string option 2.",
                   "FILENAME",
@@ -83,7 +83,7 @@ int main (int argc, char *argv[])
   //   1st arg: short option name
   //   2nd arg: long option name
   //   3rd arg: pointer to store the parse result
-  //   4th arg: description for `help'
+  //   4th arg: description for `--help'
   //            `d_indent' is description default indent.
   cmd.add_flag ('f', "flag", &flag,
                 cmd.d_indent + "This is a flag.\n" +
@@ -92,7 +92,7 @@ int main (int argc, char *argv[])
 
   // Add another flag option
   //   1st arg: this option doesn't have a short name
-  //   5th arg: option group name for `help'
+  //   5th arg: option group name for `--help'
   cmd.add_flag (0, "flag-another", &flag2,
                 cmd.d_indent + "This is a flag 2.",
                 "Group1");
@@ -102,9 +102,9 @@ int main (int argc, char *argv[])
   //   2nd arg: long option name
   //   3rd arg: {no|required|optional}_argument like getopt_long ()
   //   4th arg: option handler (lambda expression)
-  //   5th arg: description for `help'
+  //   5th arg: description for `--help'
   //            `d_indent' is description default indent.
-  //   6th arg: typestr for `help'
+  //   6th arg: typestr for `--help'
   cmd.add_handler ('H', "handler",
                    cmdlineparse::arg_mode::optional_argument,
                    [](const std::string &optarg)
@@ -118,10 +118,10 @@ int main (int argc, char *argv[])
 
   // Add another option handler
   //   4th arg: option handler (function)
-  //   6th arg: typestr for `help'
-  //   7th arg: header for `help'
+  //   6th arg: typestr for `--help'
+  //   7th arg: header for `--help'
   //            `h_space' is header default separator spaces.
-  //   8th arg: option group name for `help'
+  //   8th arg: option group name for `--help'
   cmd.add_handler ('F', "callback-func",
                    cmdlineparse::arg_mode::required_argument,
                    callback_function,
@@ -134,7 +134,7 @@ int main (int argc, char *argv[])
   //   1st arg: this option doesn't have a short name
   //   2nd arg: this option doesn't have a long name
   //   3rd arg: this option doesn't require argument
-  //   4th arg: description for `help'
+  //   4th arg: description for `--help'
   //            `h_indent' is header default indent.
   cmd.add_description (0, "", cmdlineparse::arg_mode::no_argument,
                        "Description only\n" +
@@ -142,8 +142,8 @@ int main (int argc, char *argv[])
 
   // Add another description only
   //   5th arg: this option doesn't have typestr
-  //   6th arg: header for `help'
-  //   7th arg: option group name for `help'
+  //   6th arg: header for `--help'
+  //   7th arg: option group name for `--help'
   cmd.add_description (0, "", cmdlineparse::arg_mode::no_argument,
                        cmd.d_indent + "description only 2 - first line\n" +
                        cmd.d_indent + "description only 2 - second line",
