@@ -1,5 +1,5 @@
 //
-// One header file Commandline Parse for C++11 2016-09-19.22
+// One header file Commandline Parse for C++11 2016-09-29.20
 // https://github.com/trueroad/cmdlineparse/
 //
 // Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
@@ -35,6 +35,14 @@
 #include <iostream>
 #include <sstream>
 #include <functional>
+
+// gettext macros
+#ifndef _
+
+#define _(DUMMY) DUMMY
+#define CMDLINEPARSE_HH_DEFINE_DUMMY_GETTEXT
+
+#endif
 
 namespace cmdlineparse
 {
@@ -244,7 +252,7 @@ namespace cmdlineparse
      {
        if (opterr)
          std::cerr << argvs[0]
-                   << ": option doesn't take an argument -- "
+                   << _(": option doesn't take an argument -- ")
                    << long_name << std::endl;
        return continue_on_error;
      }),
@@ -253,7 +261,7 @@ namespace cmdlineparse
      {
        if (opterr)
          std::cerr << argvs[0]
-                   << ": option requires an argument -- "
+                   << _(": option requires an argument -- ")
                    << long_name << std::endl;
        return continue_on_error;
      }),
@@ -262,7 +270,7 @@ namespace cmdlineparse
      {
        if (opterr)
          std::cerr << argvs[0]
-                   << ": ambiguous option -- "
+                   << _(": ambiguous option -- ")
                    << optchars << std::endl;
        return continue_on_error;
      }),
@@ -271,7 +279,7 @@ namespace cmdlineparse
      {
        if (opterr)
          std::cerr << argvs[0]
-                   << ": unknown option -- "
+                   << _(": unknown option -- ")
                    << optchars << std::endl;
        return continue_on_error;
      }),
@@ -280,7 +288,7 @@ namespace cmdlineparse
      {
        if (opterr)
          std::cerr << argvs[0]
-                   << ": option requires an argument -- "
+                   << _(": option requires an argument -- ")
                    << optchar << std::endl;
        return continue_on_error;
      }),
@@ -289,7 +297,7 @@ namespace cmdlineparse
      {
        if (opterr)
          std::cerr << argvs[0]
-                   << ": unknown option -- "
+                   << _(": unknown option -- ")
                    << optchar << std::endl;
        return continue_on_error;
      })
@@ -446,7 +454,7 @@ namespace cmdlineparse
     std::string header;
 
     if(!defval.empty ())
-      header = h_space + "(default=" + defval + ")";
+      header = h_space + _("(default=") + defval + ")";
     return add_handler (short_name, long_name, arg_mode::required_argument,
                         [var](const std::string &optarg)->bool
                         {
@@ -465,7 +473,7 @@ namespace cmdlineparse
                           std::cout << build_help ();
                           return false;
                         },
-                        d_indent + "Print help and exit");
+                        d_indent + _("Print help and exit"));
   }
 
   inline bool
@@ -477,7 +485,7 @@ namespace cmdlineparse
                           std::cout << version_string;
                           return false;
                         },
-                        d_indent + "Print version and exit");
+                        d_indent + _("Print version and exit"));
   }
 
   inline bool
@@ -790,7 +798,7 @@ namespace cmdlineparse
   {
     std::stringstream ss;
 
-    ss << "Usage: " << argvs[0] << " [options] ";
+    ss << _("Usage: ") << argvs[0] << _(" [options] ");
     if (!usage_unamed_opts.empty ())
       ss << "[" << usage_unamed_opts << "] ";
     ss << "..." << std::endl;
@@ -819,4 +827,10 @@ namespace cmdlineparse
   }
 
 }
+
+#if defined (_) && defined (CMDLINEPARSE_HH_DEFINE_DUMMY_GETTEXT)
+#undef _
+#undef CMDLINEPARSE_HH_DEFINE_DUMMY_GETTEXT
+#endif
+
 #endif
