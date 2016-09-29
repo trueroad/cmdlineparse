@@ -34,7 +34,13 @@ int main (int argc, char *argv[])
   std::string str;
   bool flag;
 
-  // Add `help' and `version' options
+  // Set version string for `--help' and `--version' etc.
+  cmd.set_version_string (
+"One header file Commandline Parse for C++11: Simple Sample\n"
+"Copyright (C) 2016 Masamichi Hosoda. All rights reserved.\n"
+                          );
+
+  // Add `--help' and `--version' options
   cmd.add_default ();
 
   // Add a string option
@@ -42,21 +48,22 @@ int main (int argc, char *argv[])
   //   2nd arg: long option name
   //   3rd arg: a pointer to store the parse result
   //   4th arg: default value
-  //   5th arg: description for `help'
-  //            `d_indent' is description default indent.
+  //   5th arg: description for `--help'
+  //            Four spaces indent is recommended.
   cmd.add_string ('s', "string", &str, "foobar",
-                  cmd.d_indent + "Specify string option.");
+                  "    Specify string option.");
 
   // Add a flag option
   //   1st arg: short option name
   //   2nd arg: long option name
   //   3rd arg: pointer to store the parse result
-  //   4th arg: description for `help'
-  //            `d_indent' is description default indent.
+  //   4th arg: description for `--help'
+  //            This parser doesn't warp text automatically.
+  //            Four spaces indent is recommended.
   cmd.add_flag ('f', "flag", &flag,
-                cmd.d_indent + "This is a flag.\n" +
-                cmd.d_indent + "Second line.\n" +
-                cmd.d_indent + "This parser doesn't warp text automatically.");
+                "    This is a flag.\n"
+                "    Second line.\n"
+                "    This parser doesn't warp text automatically.");
 
   // Parse
   if (!cmd.parse (argc, argv))
@@ -76,11 +83,8 @@ Short option `-h` prints help and exit.
 
 ```
 $ ./simple-sample -h
-One header file Commandline Parse for C++11 2016-09-19.22
+One header file Commandline Parse for C++11: Simple Sample
 Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
-License: BSD-2-Clause
-
-https://github.com/trueroad/cmdlineparse/
 
 Usage: ./simple-sample [options] ...
 
@@ -177,8 +181,11 @@ Here is an output:
 
 ```
 $ ./advanced-sample --help
-One header file Commandline Parse for C++11: Advanced Sample
+One header file Commandline Parse for C++11 2016-09-29.21
 Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
+License: BSD-2-Clause
+
+https://github.com/trueroad/cmdlineparse/
 
 Usage: ./advanced-sample [options] [FILES] ...
 
@@ -435,35 +442,6 @@ const std::string &get_version_string () const noexcept;
 ```
 
 Get version strings. It can be used for custom version handler etc.
-
-#### Constant
-
-##### header default indent
-
-```c++
-const std::string h_indent;
-```
-
-Description header default indent.
-It can be used for `header` argumnent of `add_* ()` etc.
-
-##### header default separator spaces
-
-```c++
-const std::string h_space;
-```
-
-Description header default separator spaces.
-It can be used for `header` argumnent of `add_* ()` etc.
-
-##### description default indent
-
-```c++
-const std::string d_indent;
-```
-
-Description body default indent.
-It can be used for `description` argumnent of `add_* ()` etc.
 
 ### Customize
 

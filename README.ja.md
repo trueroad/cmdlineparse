@@ -35,7 +35,13 @@ int main (int argc, char *argv[])
   std::string str;
   bool flag;
 
-  // Add `help' and `version' options
+  // Set version string for `--help' and `--version' etc.
+  cmd.set_version_string (
+"One header file Commandline Parse for C++11: Simple Sample\n"
+"Copyright (C) 2016 Masamichi Hosoda. All rights reserved.\n"
+                          );
+
+  // Add `--help' and `--version' options
   cmd.add_default ();
 
   // Add a string option
@@ -43,21 +49,22 @@ int main (int argc, char *argv[])
   //   2nd arg: long option name
   //   3rd arg: a pointer to store the parse result
   //   4th arg: default value
-  //   5th arg: description for `help'
-  //            `d_indent' is description default indent.
+  //   5th arg: description for `--help'
+  //            Four spaces indent is recommended.
   cmd.add_string ('s', "string", &str, "foobar",
-                  cmd.d_indent + "Specify string option.");
+                  "    Specify string option.");
 
   // Add a flag option
   //   1st arg: short option name
   //   2nd arg: long option name
   //   3rd arg: pointer to store the parse result
-  //   4th arg: description for `help'
-  //            `d_indent' is description default indent.
+  //   4th arg: description for `--help'
+  //            This parser doesn't warp text automatically.
+  //            Four spaces indent is recommended.
   cmd.add_flag ('f', "flag", &flag,
-                cmd.d_indent + "This is a flag.\n" +
-                cmd.d_indent + "Second line.\n" +
-                cmd.d_indent + "This parser doesn't warp text automatically.");
+                "    This is a flag.\n"
+                "    Second line.\n"
+                "    This parser doesn't warp text automatically.");
 
   // Parse
   if (!cmd.parse (argc, argv))
@@ -77,11 +84,8 @@ int main (int argc, char *argv[])
 
 ```
 $ ./simple-sample -h
-One header file Commandline Parse for C++11 2016-09-19.22
+One header file Commandline Parse for C++11: Simple Sample
 Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
-License: BSD-2-Clause
-
-https://github.com/trueroad/cmdlineparse/
 
 Usage: ./simple-sample [options] ...
 
@@ -178,8 +182,11 @@ flag = true
 
 ```
 $ ./advanced-sample --help
-One header file Commandline Parse for C++11: Advanced Sample
+One header file Commandline Parse for C++11 2016-09-29.21
 Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
+License: BSD-2-Clause
+
+https://github.com/trueroad/cmdlineparse/
 
 Usage: ./advanced-sample [options] [FILES] ...
 
@@ -437,35 +444,6 @@ const std::string &get_version_string () const noexcept;
 
 バージョン文字列を取得します。
 カスタムのバージョンハンドラ等に使うことができます。
-
-#### 定数
-
-##### ヘッダのデフォルトインデント
-
-```c++
-const std::string h_indent;
-```
-
-説明ヘッダのデフォルトインデントです。
-`add_* ()` の `header` 引数等に使用できます。
-
-##### ヘッダのデフォルトセパレータスペース
-
-```c++
-const std::string h_space;
-```
-
-説明ヘッダのデフォルトセパレータスペースです。
-`add_* ()` の `header` 引数等に使用できます。
-
-##### 説明本文のデフォルトインデント
-
-```c++
-const std::string d_indent;
-```
-
-説明本文のデフォルトインデントです。
-`add_* ()` の `description` 引数等に使用できます。
 
 ### カスタマイズ
 
