@@ -50,11 +50,8 @@ int main (int argc, char *argv[])
   std::string str, str2;
   bool flag, flag2;
 
-  // Set version string for `help' and `version' etc.
-  cmd.set_version_string (
-"One header file Commandline Parse for C++11: Advanced Sample\n"
-"Copyright (C) 2016 Masamichi Hosoda. All rights reserved.\n"
-                          );
+  // Version string (for `--help' and `--version' etc.) isn't set.
+  // Use default version string (Autotools macros or argv[0]).
 
   // Set usage_unamed_opts (options without names e.g. file names)
   // for usage in `help'
