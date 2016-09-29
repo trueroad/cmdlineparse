@@ -28,8 +28,6 @@
 // SUCH DAMAGE.
 //
 
-#include "config.h"
-
 #include <iostream>
 #include "cmdlineparse.hh"
 
@@ -41,6 +39,12 @@ int main (int argc, char *argv[])
   // Prepare variable to store the parse result
   std::string str;
   bool flag;
+
+  // Set version string for `--help' and `--version' etc.
+  cmd.set_version_string (
+"One header file Commandline Parse for C++11: Simple Sample\n"
+"Copyright (C) 2016 Masamichi Hosoda. All rights reserved.\n"
+                          );
 
   // Add `help' and `version' options
   cmd.add_default ();
