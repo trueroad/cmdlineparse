@@ -1,5 +1,5 @@
 //
-// One header file Commandline Parse for C++11 2016-09-29.20
+// One header file Commandline Parse for C++11 2016-09-29.21
 // https://github.com/trueroad/cmdlineparse/
 //
 // Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
@@ -454,7 +454,10 @@ namespace cmdlineparse
     std::string header;
 
     if(!defval.empty ())
-      header = h_space + _("(default=") + defval + ")";
+      {
+        // Three spaces for separator (same as h_space)
+        header = _("   (default=") + defval + ")";
+      }
     return add_handler (short_name, long_name, arg_mode::required_argument,
                         [var](const std::string &optarg)->bool
                         {
@@ -473,7 +476,8 @@ namespace cmdlineparse
                           std::cout << build_help ();
                           return false;
                         },
-                        d_indent + _("Print help and exit"));
+                        // Four spaces for indent (same as d_indent)
+                        _("    Print help and exit"));
   }
 
   inline bool
@@ -485,7 +489,8 @@ namespace cmdlineparse
                           std::cout << version_string;
                           return false;
                         },
-                        d_indent + _("Print version and exit"));
+                        // Four spaces for indent (same as d_indent)
+                        _("    Print version and exit"));
   }
 
   inline bool
