@@ -66,16 +66,16 @@ int main (int argc, char *argv[])
   //   3rd arg: a pointer to store the parse result
   //   4th arg: default value
   //   5th arg: description for `--help'
-  //            `d_indent' is description default indent.
+  //            Four spaces indent is recommended.
   cmd.add_string ('s', "string", &str, "foo",
-                  cmd.d_indent + "Specify string option.");
+                  "    Specify string option.");
 
   // Add another string option
   //   2nd arg: this option doesn't have a long name
   //   6th arg: typestr for `--help'
   //   7th arg: option group name for `--help'
   cmd.add_string ('t', "", &str2, "bar",
-                  cmd.d_indent + "Specify string option 2.",
+                  "    Specify string option 2.",
                   "FILENAME",
                   "Group1");
 
@@ -84,17 +84,18 @@ int main (int argc, char *argv[])
   //   2nd arg: long option name
   //   3rd arg: pointer to store the parse result
   //   4th arg: description for `--help'
-  //            `d_indent' is description default indent.
+  //            This parser doesn't warp text automatically.
+  //            Four spaces indent is recommended.
   cmd.add_flag ('f', "flag", &flag,
-                cmd.d_indent + "This is a flag.\n" +
-                cmd.d_indent + "Second line.\n" +
-                cmd.d_indent + "This parser doesn't warp text automatically.");
+                "    This is a flag.\n"
+                "    Second line.\n"
+                "    This parser doesn't warp text automatically.");
 
   // Add another flag option
   //   1st arg: this option doesn't have a short name
   //   5th arg: option group name for `--help'
   cmd.add_flag (0, "flag-another", &flag2,
-                cmd.d_indent + "This is a flag 2.",
+                "    This is a flag 2.",
                 "Group1");
 
   // Add option handler
@@ -103,7 +104,7 @@ int main (int argc, char *argv[])
   //   3rd arg: {no|required|optional}_argument like getopt_long ()
   //   4th arg: option handler (lambda expression)
   //   5th arg: description for `--help'
-  //            `d_indent' is description default indent.
+  //            Four spaces indent is recommended.
   //   6th arg: typestr for `--help'
   cmd.add_handler ('H', "handler",
                    cmdlineparse::arg_mode::optional_argument,
@@ -113,21 +114,21 @@ int main (int argc, char *argv[])
                                << optarg << "\"" << std::endl;
                      return true;
                    },
-                   cmd.d_indent + "This is option handler",
+                   "    This is option handler",
                    "OPTION");
 
   // Add another option handler
   //   4th arg: option handler (function)
   //   6th arg: typestr for `--help'
   //   7th arg: header for `--help'
-  //            `h_space' is header default separator spaces.
+  //            Three spaces separator is recommended.
   //   8th arg: option group name for `--help'
   cmd.add_handler ('F', "callback-func",
                    cmdlineparse::arg_mode::required_argument,
                    callback_function,
-                   cmd.d_indent + "This is callback hander",
+                   "    This is callback hander",
                    "OPTARG",
-                   cmd.h_space + "(OPTARG is required)",
+                   "   (OPTARG is required)",
                    "Group1");
 
   // Add description only
@@ -135,18 +136,18 @@ int main (int argc, char *argv[])
   //   2nd arg: this option doesn't have a long name
   //   3rd arg: this option doesn't require argument
   //   4th arg: description for `--help'
-  //            `h_indent' is header default indent.
+  //            Two spaces indent is recommended for header like strings.
   cmd.add_description (0, "", cmdlineparse::arg_mode::no_argument,
-                       "Description only\n" +
-                       cmd.h_indent + "description only");
+                       "Description only\n"
+                       "  description only");
 
   // Add another description only
   //   5th arg: this option doesn't have typestr
   //   6th arg: header for `--help'
   //   7th arg: option group name for `--help'
   cmd.add_description (0, "", cmdlineparse::arg_mode::no_argument,
-                       cmd.d_indent + "description only 2 - first line\n" +
-                       cmd.d_indent + "description only 2 - second line",
+                       "    description only 2 - first line\n"
+                       "    description only 2 - second line",
                        "",
                        "Description 2",
                        "Group1");
@@ -170,10 +171,10 @@ int main (int argc, char *argv[])
                                << std::endl << "  Continue..." << std::endl;
                      return true;  // Continue
                    },
-                   cmd.d_indent + "This option aborts parsing\n" +
-                   cmd.d_indent + "If FLAG=true, abort parsing",
+                   "    This option aborts parsing\n"
+                   "    If FLAG=true, abort parsing",
                    "FLAG",
-                   cmd.h_space + "(possible value=true, false)",
+                   "   (possible value=true, false)",
                    "Group2");
 
   // Parse
