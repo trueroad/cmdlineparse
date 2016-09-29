@@ -46,7 +46,7 @@ int main (int argc, char *argv[])
 "Copyright (C) 2016 Masamichi Hosoda. All rights reserved.\n"
                           );
 
-  // Add `help' and `version' options
+  // Add `--help' and `--version' options
   cmd.add_default ();
 
   // Add a string option
@@ -54,7 +54,7 @@ int main (int argc, char *argv[])
   //   2nd arg: long option name
   //   3rd arg: a pointer to store the parse result
   //   4th arg: default value
-  //   5th arg: description for `help'
+  //   5th arg: description for `--help'
   //            `d_indent' is description default indent.
   cmd.add_string ('s', "string", &str, "foobar",
                   cmd.d_indent + "Specify string option.");
@@ -63,7 +63,7 @@ int main (int argc, char *argv[])
   //   1st arg: short option name
   //   2nd arg: long option name
   //   3rd arg: pointer to store the parse result
-  //   4th arg: description for `help'
+  //   4th arg: description for `--help'
   //            `d_indent' is description default indent.
   cmd.add_flag ('f', "flag", &flag,
                 cmd.d_indent + "This is a flag.\n" +
