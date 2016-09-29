@@ -5,6 +5,8 @@ advanced_sample_SOURCES = advanced-sample.cc cmdlineparse.hh
 dist_doc_DATA = README.md README.ja.md LICENSE
 EXTRA_DIST = autogen.sh .dir-locals.el .gitignore
 
+ACLOCAL_AMFLAGS = -I m4
+
 install:
 	echo Files can not be installed.
 	echo Please copy cmdlineparse.hh to your project directory.
