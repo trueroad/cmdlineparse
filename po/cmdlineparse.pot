@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Masamichi Hosoda
+# This file is distributed under the same license as the cmdlineparse package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: cmdlineparse 2016-09-29.21\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-29 23:48+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: i18n-sample.cc:60
+msgid ""
+"One header file Commandline Parse for C++11: i18n Sample\n"
+"Copyright (C) 2016 Masamichi Hosoda. All rights reserved.\n"
+msgstr ""
+
+#: i18n-sample.cc:75
+msgid "    Specify string option."
+msgstr ""
+
+#: i18n-sample.cc:85
+msgid ""
+"    This is a flag.\n"
+"    Second line.\n"
+"    This parser doesn't warp text automatically."
+msgstr ""
+
+#: i18n-sample.cc:94
+msgid "string option = \""
+msgstr ""
+
+#: i18n-sample.cc:95
+msgid "flag = "
+msgstr ""
+
+#: cmdlineparse.hh:255
+msgid ": option doesn't take an argument -- "
+msgstr ""
+
+#: cmdlineparse.hh:264 cmdlineparse.hh:291
+msgid ": option requires an argument -- "
+msgstr ""
+
+#: cmdlineparse.hh:273
+msgid ": ambiguous option -- "
+msgstr ""
+
+#: cmdlineparse.hh:282 cmdlineparse.hh:300
+msgid ": unknown option -- "
+msgstr ""
+
+#: cmdlineparse.hh:459
+msgid "   (default="
+msgstr ""
+
+#: cmdlineparse.hh:480
+msgid "    Print help and exit"
+msgstr ""
+
+#: cmdlineparse.hh:493
+msgid "    Print version and exit"
+msgstr ""
+
+#: cmdlineparse.hh:806
+msgid "Usage: "
+msgstr ""
+
+#: cmdlineparse.hh:806
+msgid " [options] "
+msgstr ""
