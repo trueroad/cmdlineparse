@@ -28,7 +28,10 @@
 // SUCH DAMAGE.
 //
 
+// For Autotools (autoconf) macros
+#ifdef HAVE_CONFIG_H
 #include "config.h"
+#endif
 
 #include <iostream>
 #include "cmdlineparse.hh"
