@@ -7,8 +7,22 @@
 
 ## サンプルをビルドする
 
+サンプルをビルドする方法には 2 通りあります。
+
+### 手動コンパイル
+
+サンプルは下記のようなコマンドでビルドできます。
+環境によっては異なるコマンドやオプションが必要になる場合があります。
+
+```
+$ g++ -std=c++11 -o simple-sample simple-sample.cc
+$ g++ -std=c++11 -o advanced-sample advanced-sample.cc
+```
+
+### Autotools
+
 *Commandline Parse* そのものは Autotools 不要ですが、
-サンプルのビルドには Autotools が必要になります。
+Autotools を使うと以下のコマンドで簡単にビルドできます。
 
 ```
 $ ./autogen.sh

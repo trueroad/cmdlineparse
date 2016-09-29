@@ -6,8 +6,22 @@ Therefore, you can use it easily.
 
 ## Build samples
 
+There are two ways for building samples.
+
+### Manually compile
+
+The samples can be built by something like the following commands.
+You might need different commands and options depending on the environment.
+
+```
+$ g++ -std=c++11 -o simple-sample simple-sample.cc
+$ g++ -std=c++11 -o advanced-sample advanced-sample.cc
+```
+
+### Autotools
+
 *Commandline Parse* does not require Autotools.
-But, these samples use Autotools.
+But, the samples can be built easily by Autotools as the following commands.
 
 ```
 $ ./autogen.sh
