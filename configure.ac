@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([One header file Commandline Parse for C++11],
-[2016-09-19.22], , cmdlineparse,
+[2016-09-29.21], , cmdlineparse,
 [https://github.com/trueroad/cmdlineparse/])
 AM_INIT_AUTOMAKE([foreign])
 AC_CONFIG_SRCDIR([advanced-sample.cc])
