@@ -6,6 +6,8 @@ AC_INIT([One header file Commandline Parse for C++11],
 [2016-09-29.21], , cmdlineparse,
 [https://github.com/trueroad/cmdlineparse/])
 AM_INIT_AUTOMAKE([foreign])
+AM_GNU_GETTEXT_VERSION([0.18.2])
+AM_GNU_GETTEXT([external])
 AC_CONFIG_SRCDIR([advanced-sample.cc])
 AC_CONFIG_HEADERS([config.h])
 
@@ -34,5 +36,5 @@ AX_CXX_COMPILE_STDCXX_11([noext], [mandatory])
 
 # Checks for library functions.
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile po/Makefile.in])
 AC_OUTPUT
