@@ -1,3 +1,4 @@
+<!-- -*- coding: utf-8 -*- -->
 # One header file *Commandline Parse* for C++11
 
 *Commandline Parse* is a command line parser for C++11.
@@ -13,9 +14,26 @@ There are two ways for building samples.
 The samples can be built by something like the following commands.
 You might need different commands and options depending on the environment.
 
+#### Simple sample
+
 ```
 $ g++ -std=c++11 -o simple-sample simple-sample.cc
+```
+
+#### Advanced sample
+
+```
 $ g++ -std=c++11 -o advanced-sample advanced-sample.cc
+```
+
+#### i18n sample
+
+i18n sample requires `gettext`.
+
+```
+$ g++ -std=c++11 -o i18n-sample -DENABLE_NLS -DLOCALEDIR="\".\"" -DPACKAGE="\"cmdlineparse\"" i18n-sample.cc -lintl
+$ mkdir -p ja/LC_MESSAGES
+$ msgfmt -o ja/LC_MESSAGES/cmdlineparse.mo po/ja.po
 ```
 
 ### Autotools
@@ -27,6 +45,16 @@ But, the samples can be built easily by Autotools as the following commands.
 $ ./autogen.sh
 $ ./configure
 $ make
+```
+
+If you would like i18n sample,
+something like the following commands may be convenient.
+
+```
+$ ./autogen.sh
+$ ./configure --prefix /path/to/mo/install/directory
+$ make
+$ make -C po install
 ```
 
 ## Usage
@@ -234,6 +262,48 @@ Group2:
     This option aborts parsing
     If FLAG=true, abort parsing
 Abort reason is option_handler -- help
+
+```
+
+### i18n sample
+
+i18n sample is [i18n-sample.cc](./i18n-sample.cc).
+Here is an output:
+
+```
+$ LANG=ja_JP.UTF-8 ./i18n-sample -h
+One header file Commandline Parse for C++11: i18n Sample
+Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
+
+使い方: ./i18n-sample [オプション] ...
+
+  -h, --help
+    ヘルプを表示して終了
+  -V, --version
+    バージョンを表示して終了
+  -s, --string=STRING   (デフォルト=foobar)
+    文字列オプションを指定.
+  -f, --flag
+    これはフラグです.
+    二行目.
+    このパーサは自動改行しません.
+
+$ LANG=C ./i18n-sample -h
+One header file Commandline Parse for C++11: i18n Sample
+Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
+
+Usage: ./i18n-sample [options] ...
+
+  -h, --help
+    Print help and exit
+  -V, --version
+    Print version and exit
+  -s, --string=STRING   (default=foobar)
+    Specify string option.
+  -f, --flag
+    This is a flag.
+    Second line.
+    This parser doesn't warp text automatically.
 
 ```
 

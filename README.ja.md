@@ -14,9 +14,26 @@
 サンプルは下記のようなコマンドでビルドできます。
 環境によっては異なるコマンドやオプションが必要になる場合があります。
 
+#### シンプルなサンプル
+
 ```
 $ g++ -std=c++11 -o simple-sample simple-sample.cc
+```
+
+#### 高度なサンプル
+
+```
 $ g++ -std=c++11 -o advanced-sample advanced-sample.cc
+```
+
+#### 国際化サンプル
+
+国際化サンプルには `gettext` が必要です。
+
+```
+$ g++ -std=c++11 -o i18n-sample -DENABLE_NLS -DLOCALEDIR="\".\"" -DPACKAGE="\"cmdlineparse\"" i18n-sample.cc -lintl
+$ mkdir -p ja/LC_MESSAGES
+$ msgfmt -o ja/LC_MESSAGES/cmdlineparse.mo po/ja.po
 ```
 
 ### Autotools
@@ -28,6 +45,16 @@ Autotools を使うと以下のコマンドで簡単にビルドできます。
 $ ./autogen.sh
 $ ./configure
 $ make
+```
+
+国際化サンプルを試してみたい場合には、
+以下のようなコマンドが便利かもしれません。
+
+```
+$ ./autogen.sh
+$ ./configure --prefix /path/to/mo/install/directory
+$ make
+$ make -C po install
 ```
 
 ## 使い方
@@ -235,6 +262,48 @@ Group2:
     This option aborts parsing
     If FLAG=true, abort parsing
 Abort reason is option_handler -- help
+
+```
+
+### 国際化サンプル
+
+国際化サンプルは [i18n-sample.cc](./i18n-sample.cc) にあります。
+以下、出力の例です。
+
+```
+$ LANG=ja_JP.UTF-8 ./i18n-sample -h
+One header file Commandline Parse for C++11: i18n Sample
+Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
+
+使い方: ./i18n-sample [オプション] ...
+
+  -h, --help
+    ヘルプを表示して終了
+  -V, --version
+    バージョンを表示して終了
+  -s, --string=STRING   (デフォルト=foobar)
+    文字列オプションを指定.
+  -f, --flag
+    これはフラグです.
+    二行目.
+    このパーサは自動改行しません.
+
+$ LANG=C ./i18n-sample -h
+One header file Commandline Parse for C++11: i18n Sample
+Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
+
+Usage: ./i18n-sample [options] ...
+
+  -h, --help
+    Print help and exit
+  -V, --version
+    Print version and exit
+  -s, --string=STRING   (default=foobar)
+    Specify string option.
+  -f, --flag
+    This is a flag.
+    Second line.
+    This parser doesn't warp text automatically.
 
 ```
 
