@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([One header file Commandline Parse for C++11],
-[2016-09-29.21], , cmdlineparse,
+[2016-09-29.21], , [cmdlineparse],
 [https://github.com/trueroad/cmdlineparse/])
 AM_INIT_AUTOMAKE([foreign])
 AM_GNU_GETTEXT_VERSION([0.18.2])
@@ -14,11 +14,11 @@ AC_CONFIG_HEADERS([config.h])
 PACKAGE_COPYRIGHT="Copyright (C) 2016 Masamichi Hosoda. All rights reserved."
 PACKAGE_LICENSE="License: BSD-2-Clause"
 
-AC_SUBST(PACKAGE_COPYRIGHT)
-AC_SUBST(PACKAGE_LICENSE)
-AC_DEFINE_UNQUOTED(PACKAGE_COPYRIGHT, "$PACKAGE_COPYRIGHT",
+AC_SUBST([PACKAGE_COPYRIGHT])
+AC_SUBST([PACKAGE_LICENSE])
+AC_DEFINE_UNQUOTED([PACKAGE_COPYRIGHT], ["$PACKAGE_COPYRIGHT"],
 [Define to the copyright of this package.])
-AC_DEFINE_UNQUOTED(PACKAGE_LICENSE, "$PACKAGE_LICENSE",
+AC_DEFINE_UNQUOTED([PACKAGE_LICENSE], ["$PACKAGE_LICENSE"],
 [Define to the license of this package.])
 
 # Checks for programs.
