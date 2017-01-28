@@ -1,5 +1,5 @@
 //
-// One header file Commandline Parse for C++11 2017-01-28.22
+// One header file Commandline Parse for C++11 2017-01-28.23
 // https://github.com/trueroad/cmdlineparse/
 //
 // Copyright (C) 2016, 2017 Masamichi Hosoda. All rights reserved.
@@ -180,9 +180,9 @@ namespace cmdlineparse
     parser ();
 
     // Const
-    const std::string h_indent;
-    const std::string h_space;
-    const std::string d_indent;
+    const std::string h_indent {"  "};
+    const std::string h_space {"   "};
+    const std::string d_indent {"    "};
 
   private:
     // Internal functions
@@ -212,13 +212,13 @@ namespace cmdlineparse
     std::string usage_unamed_opts;
 
     // Flags
-    bool opterr;
-    bool continue_on_error;
-    bool long_only;
-    bool abbreviated_long_name;
+    bool opterr {true};
+    bool continue_on_error {false};
+    bool long_only {false};
+    bool abbreviated_long_name {true};
 
     // Abort reason
-    abort_reason abort;
+    abort_reason abort {abort_reason::no_abort};
     std::string abort_option;
 
     // Arguments
@@ -237,10 +237,6 @@ namespace cmdlineparse
 
   inline
   parser::parser ():
-    // Set const values
-    h_indent ("  "),
-    h_space ("   "),
-    d_indent ("    "),
     // Set default error handlers
     error_extra_arg
     ([this](const std::string &long_name, const std::string &optarg)->bool
@@ -295,14 +291,7 @@ namespace cmdlineparse
                    << _(": unknown option -- ")
                    << optchar << std::endl;
        return continue_on_error;
-     }),
-    // Set default flags
-    opterr (true),
-    continue_on_error (false),
-    long_only (false),
-    // Set default abort reason
-    abbreviated_long_name (true),
-    abort (abort_reason::no_abort)
+     })
   {
 #ifdef PACKAGE_STRING
     // Build version_string
