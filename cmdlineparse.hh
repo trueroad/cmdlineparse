@@ -1,5 +1,5 @@
 //
-// One header file Commandline Parse for C++11 2017-01-29.00
+// One header file Commandline Parse for C++11 2017-01-29.01
 // https://github.com/trueroad/cmdlineparse/
 //
 // Copyright (C) 2016, 2017 Masamichi Hosoda. All rights reserved.
@@ -202,7 +202,7 @@ namespace cmdlineparse
     std::function<bool(const std::string&,
                        const std::string&)> error_extra_arg
     {
-      [this](const std::string &long_name, const std::string &optarg)->bool
+      [this](const std::string &long_name, const std::string &)->bool
         {
           if (opterr)
             std::cerr << argvs[0]
