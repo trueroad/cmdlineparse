@@ -1,8 +1,8 @@
 //
-// One header file Commandline Parse for C++11 2016-09-29.21
+// One header file Commandline Parse for C++11 2017-01-28.22
 // https://github.com/trueroad/cmdlineparse/
 //
-// Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
+// Copyright (C) 2016, 2017 Masamichi Hosoda. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -237,12 +237,7 @@ namespace cmdlineparse
 
   inline
   parser::parser ():
-    // Set default values
-    opterr (true),
-    continue_on_error (false),
-    long_only (false),
-    abbreviated_long_name (true),
-    abort (abort_reason::no_abort),
+    // Set const values
     h_indent ("  "),
     h_space ("   "),
     d_indent ("    "),
@@ -300,7 +295,14 @@ namespace cmdlineparse
                    << _(": unknown option -- ")
                    << optchar << std::endl;
        return continue_on_error;
-     })
+     }),
+    // Set default flags
+    opterr (true),
+    continue_on_error (false),
+    long_only (false),
+    // Set default abort reason
+    abbreviated_long_name (true),
+    abort (abort_reason::no_abort)
   {
 #ifdef PACKAGE_STRING
     // Build version_string
