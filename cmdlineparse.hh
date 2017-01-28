@@ -1,5 +1,5 @@
 //
-// One header file Commandline Parse for C++11 2017-01-28.23
+// One header file Commandline Parse for C++11 2017-01-29.00
 // https://github.com/trueroad/cmdlineparse/
 //
 // Copyright (C) 2016, 2017 Masamichi Hosoda. All rights reserved.
@@ -200,12 +200,72 @@ namespace cmdlineparse
 
     // Error handlers
     std::function<bool(const std::string&,
-                       const std::string&)> error_extra_arg;
-    std::function<bool(const std::string&)> error_no_arg;
-    std::function<bool(const std::string&)> error_ambiguous_option;
-    std::function<bool(const std::string&)> error_unknown_option;
-    std::function<bool(char)> error_no_arg_short;
-    std::function<bool(char)> error_unknown_option_short;
+                       const std::string&)> error_extra_arg
+    {
+      [this](const std::string &long_name, const std::string &optarg)->bool
+        {
+          if (opterr)
+            std::cerr << argvs[0]
+                      << _(": option doesn't take an argument -- ")
+                      << long_name << std::endl;
+          return continue_on_error;
+        }
+    };
+    std::function<bool(const std::string&)> error_no_arg
+    {
+      [this](const std::string &long_name)->bool
+        {
+          if (opterr)
+            std::cerr << argvs[0]
+                      << _(": option requires an argument -- ")
+                      << long_name << std::endl;
+          return continue_on_error;
+        }
+    };
+    std::function<bool(const std::string&)> error_ambiguous_option
+    {
+      [this](const std::string &optchars)->bool
+        {
+          if (opterr)
+            std::cerr << argvs[0]
+                      << _(": ambiguous option -- ")
+                      << optchars << std::endl;
+          return continue_on_error;
+        }
+    };
+    std::function<bool(const std::string&)> error_unknown_option
+    {
+      [this](const std::string &optchars)->bool
+        {
+          if (opterr)
+            std::cerr << argvs[0]
+                      << _(": unknown option -- ")
+                      << optchars << std::endl;
+          return continue_on_error;
+        }
+    };
+    std::function<bool(char)> error_no_arg_short
+    {
+      [this](char optchar)->bool
+        {
+          if (opterr)
+            std::cerr << argvs[0]
+                      << _(": option requires an argument -- ")
+                      << optchar << std::endl;
+          return continue_on_error;
+        }
+    };
+    std::function<bool(char)> error_unknown_option_short
+    {
+      [this](char optchar)->bool
+        {
+          if (opterr)
+            std::cerr << argvs[0]
+                      << _(": unknown option -- ")
+                      << optchar << std::endl;
+          return continue_on_error;
+        }
+    };
 
     // Help strings
     std::string version_string;
@@ -236,62 +296,7 @@ namespace cmdlineparse
   };
 
   inline
-  parser::parser ():
-    // Set default error handlers
-    error_extra_arg
-    ([this](const std::string &long_name, const std::string &optarg)->bool
-     {
-       if (opterr)
-         std::cerr << argvs[0]
-                   << _(": option doesn't take an argument -- ")
-                   << long_name << std::endl;
-       return continue_on_error;
-     }),
-    error_no_arg
-    ([this](const std::string &long_name)->bool
-     {
-       if (opterr)
-         std::cerr << argvs[0]
-                   << _(": option requires an argument -- ")
-                   << long_name << std::endl;
-       return continue_on_error;
-     }),
-    error_ambiguous_option
-    ([this](const std::string &optchars)->bool
-     {
-       if (opterr)
-         std::cerr << argvs[0]
-                   << _(": ambiguous option -- ")
-                   << optchars << std::endl;
-       return continue_on_error;
-     }),
-    error_unknown_option
-    ([this](const std::string &optchars)->bool
-     {
-       if (opterr)
-         std::cerr << argvs[0]
-                   << _(": unknown option -- ")
-                   << optchars << std::endl;
-       return continue_on_error;
-     }),
-    error_no_arg_short
-    ([this](char optchar)->bool
-     {
-       if (opterr)
-         std::cerr << argvs[0]
-                   << _(": option requires an argument -- ")
-                   << optchar << std::endl;
-       return continue_on_error;
-     }),
-    error_unknown_option_short
-    ([this](char optchar)->bool
-     {
-       if (opterr)
-         std::cerr << argvs[0]
-                   << _(": unknown option -- ")
-                   << optchar << std::endl;
-       return continue_on_error;
-     })
+  parser::parser ()
   {
 #ifdef PACKAGE_STRING
     // Build version_string
