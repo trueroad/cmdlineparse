@@ -514,7 +514,7 @@ Build usage strings. It can be used for custom help handler etc.
 ##### help
 
 ```c++
-std::string build_usage (void) const;
+std::string build_help (void) const;
 ```
 
 Build help strings. It can be used for custom help handler etc.

@@ -513,7 +513,7 @@ std::string build_usage (void) const;
 ##### help
 
 ```c++
-std::string build_usage (void) const;
+std::string build_help (void) const;
 ```
 
 help 文字列を構築します。
