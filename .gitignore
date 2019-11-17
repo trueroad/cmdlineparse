@@ -17,6 +17,10 @@ Makefile
 config.h
 config.log
 config.status
+config.guess
+config.rpath
+config.sub
+ABOUT-NLS
 stamp-h1
 *.o
 *.exe

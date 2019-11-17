@@ -3,4 +3,6 @@
 
 ((c++-mode
   (c-default-style . "gnu")
+  (indent-tabs-mode))
+ (autoconf-mode
   (indent-tabs-mode)))
