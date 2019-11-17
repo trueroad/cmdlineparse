@@ -5,7 +5,7 @@
 
 [
 https://github.com/trueroad/cmdlineparse
-](https://github.com/trueroad/)
+](https://github.com/trueroad/cmdlineparse)
 
 *Commandline Parse* C++11 用のコマンドラインパーサ
 （コマンドラインオプション解析器）です。

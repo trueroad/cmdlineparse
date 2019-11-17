@@ -5,7 +5,7 @@
 
 [
 https://github.com/trueroad/cmdlineparse
-](https://github.com/trueroad/)
+](https://github.com/trueroad/cmdlineparse)
 
 *Commandline Parse* is a command line parser for C++11.
 It consists of only one header file.
