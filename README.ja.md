@@ -1,6 +1,12 @@
 <!-- -*- coding: utf-8 -*- -->
 # One header file *Commandline Parse* for C++11
 
+[ Japanese (日本語) / [English](./README.md) ]
+
+[
+https://github.com/trueroad/cmdlineparse
+](https://github.com/trueroad/)
+
 *Commandline Parse* C++11 用のコマンドラインパーサ
 （コマンドラインオプション解析器）です。
 ヘッダファイル一つだけでできていますので、簡単に使えます。
@@ -602,7 +608,7 @@ void set_abbreviated_long_name (bool flag) noexcept;
 
 ## License
 
-Copyright (C) 2016 Masamichi Hosoda. All rights reserved.
+Copyright (C) 2016, 2017, 2019 Masamichi Hosoda. All rights reserved.
 
 License: BSD-2-Clause
 
